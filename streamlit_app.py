@@ -19,35 +19,50 @@ else:
     # Create an OpenAI client.
     client = OpenAI(api_key=openai_api_key)
 
-    # Let the user upload a file via `st.file_uploader`.
-    uploaded_file = st.file_uploader(
-        "Upload a document (.txt or .md)", type=("txt", "md")
-    )
-
-    # Ask the user for a question via `st.text_area`.
-    question = st.text_area(
-        "Now ask a question about the document!",
-        placeholder="Can you give me a short summary?",
-        disabled=not uploaded_file,
-    )
-
-    if uploaded_file and question:
-
-        # Process the uploaded file and question.
-        document = uploaded_file.read().decode()
-        messages = [
-            {
-                "role": "user",
-                "content": f"Here's a document: {document} \n\n---\n\n {question}",
-            }
-        ]
-
-        # Generate an answer using the OpenAI API.
-        stream = client.chat.completions.create(
-            model="gpt-5-chat-latest",
-            messages=messages,
-            stream=True,
+    # Validate the API key immediately, before showing the rest of the app.
+    # `models.list()` is a cheap call that just checks the key works.
+    try:
+        client.models.list()
+        key_is_valid = True
+    except Exception as e:
+        key_is_valid = False
+        st.error(
+            "Your API key doesn't seem to be valid. Please check it and try again.",
+            icon="🚫",
         )
 
-        # Stream the response to the app using `st.write_stream`.
-        st.write_stream(stream)
+    if key_is_valid:
+        st.success("API key validated!", icon="✅")
+
+        # Let the user upload a file via `st.file_uploader`.
+        uploaded_file = st.file_uploader(
+            "Upload a document (.txt or .md)", type=("txt", "md")
+        )
+
+        # Ask the user for a question via `st.text_area`.
+        question = st.text_area(
+            "Now ask a question about the document!",
+            placeholder="Can you give me a short summary?",
+            disabled=not uploaded_file,
+        )
+
+        if uploaded_file and question:
+
+            # Process the uploaded file and question.
+            document = uploaded_file.read().decode()
+            messages = [
+                {
+                    "role": "user",
+                    "content": f"Here's a document: {document} \n\n---\n\n {question}",
+                }
+            ]
+
+            # Generate an answer using the OpenAI API.
+            stream = client.chat.completions.create(
+                model="gpt-5-chat-latest",
+                messages=messages,
+                stream=True,
+            )
+
+            # Stream the response to the app using `st.write_stream`.
+            st.write_stream(stream)
