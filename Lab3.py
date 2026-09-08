@@ -7,7 +7,7 @@ from openai import OpenAI
 
 st.title("Lab 3 - Streaming Chatbot with Memory")
 st.write(
-    "Ask me anything. I'll answer simply, then ask if you want more info — "
+    "Ask me anything. I'll answer simply, then ask if you want more info, "
     "say **yes** to dig deeper, or **no** to move on to something new."
 )
 st.caption("🧠 Memory: this chatbot remembers only the last 2 exchanges (your last 2 questions and my last 2 answers).")
