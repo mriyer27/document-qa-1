@@ -58,8 +58,6 @@ SYSTEM_PROMPT = (
 
 # ---------------------------------------------------------------------------
 # Chat input + streaming response
-# Combines Part A (display/history), Part B (trimmed buffer), and
-# Part C (system prompt) into the actual request sent to the model.
 # ---------------------------------------------------------------------------
 
 user_input = st.chat_input("Ask me something, or reply yes/no to my last question!")
@@ -69,8 +67,7 @@ if user_input:
     with st.chat_message("user"):
         st.markdown(user_input)
 
-    # System prompt is prepended fresh every request — never part of the
-    # trimmed history, so it's always present regardless of buffer size.
+    
     messages_to_send = [{"role": "system", "content": SYSTEM_PROMPT}] + build_buffer()
 
     with st.chat_message("assistant"):
