@@ -42,10 +42,6 @@ def build_buffer() -> list[dict]:
 
 # ---------------------------------------------------------------------------
 # Part C: Refine the chatbot
-# The system prompt drives the question -> answer -> "want more info?" loop,
-# and asks the model to explain things at a 10-year-old's reading level.
-# It lives outside st.session_state.messages entirely, so build_buffer()
-# above never sees it and can never trim it away.
 # ---------------------------------------------------------------------------
 
 SYSTEM_PROMPT = (
