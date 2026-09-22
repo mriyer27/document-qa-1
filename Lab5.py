@@ -85,13 +85,24 @@ weather_tool = {
 }
 
 
+# Part A - Weather Function Test
+# (output goes to the console/logs only,
+# not the Streamlit page, so it's invisible to the end user.)
 
+syracuse_weather = get_current_weather(
+    "Syracuse, NY"
+)
+
+lima_weather = get_current_weather(
+    "Lima, Peru"
+)
+
+print("Syracuse, NY:", syracuse_weather)
+print("Lima, Peru:", lima_weather)
 
 
 # Part B - What to Wear Bot
 
-
-st.divider()
 
 st.subheader("Part B - What to Wear Bot")
 
@@ -149,7 +160,7 @@ if st.button("Get Recommendations"):
             requested_location
         )
 
-    
+
                 # Second OpenAI call using the weather data
         final_prompt = (
             f"The current weather information is: {weather_data}. "
