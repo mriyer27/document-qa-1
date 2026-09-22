@@ -85,24 +85,7 @@ weather_tool = {
 }
 
 
-# Part A - Test Weather Function
 
-
-st.subheader("Part A - Weather Function Test")
-
-syracuse_weather = get_current_weather(
-    "Syracuse, NY"
-)
-
-lima_weather = get_current_weather(
-    "Lima, Peru"
-)
-
-st.write("Syracuse, NY:")
-st.write(syracuse_weather)
-
-st.write("Lima, Peru:")
-st.write(lima_weather)
 
 
 # Part B - What to Wear Bot
