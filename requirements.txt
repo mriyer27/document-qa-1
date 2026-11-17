@@ -7,3 +7,4 @@ anthropic
 chromadb
 pysqlite3-binary
 mutagen
+openai-agents
