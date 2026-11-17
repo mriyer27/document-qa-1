@@ -17,7 +17,7 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 # swap in whatever current low/mid-cost OpenAI model is active.
 MODEL = "gpt-5-mini"
 
-st.title("Lab: Multi-Agent \"What to Wear\" Crew")
+st.title("Lab9: Multi-Agent \"What to Wear\" Crew")
 st.write(
     "The same 'what to wear' bot from Lab 5, now split into a team of "
     "specialist agents (weather, stylist, activity planner) coordinated by "
